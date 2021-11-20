@@ -19,7 +19,7 @@ public class ContactRestController {
     }
 
     @GetMapping("/contacts/{contactId}")
-    public ResponseEntity<?> getContact(@PathVariable int contactId) {
+    public ResponseEntity<?> getContact(@PathVariable long contactId) {
         return new ResponseEntity<>(contactService.findById(contactId), HttpStatus.OK);
     }
 

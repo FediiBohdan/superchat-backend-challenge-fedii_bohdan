@@ -1,7 +1,7 @@
 -------- CONTACT TABLE --------
 DROP TABLE IF EXISTS contact CASCADE;
 
-CREATE TABLE contact (id serial PRIMARY KEY,
+CREATE TABLE contact (id BIGSERIAL PRIMARY KEY,
                       name VARCHAR(250) NOT NULL,
                       email VARCHAR(250) NOT NULL,
                       login VARCHAR(250) NOT NULL,
@@ -18,9 +18,9 @@ INSERT INTO contact (name, email, login, password) VALUES
 -------- MESSAGE TABLE --------
 DROP TABLE IF EXISTS message;
 
-CREATE TABLE message (id serial PRIMARY KEY,
-                      sender_id INT NOT NULL,
-                      receiver_id INT NOT NULL,
+CREATE TABLE message (id BIGSERIAL PRIMARY KEY,
+                      sender_id BIGINT NOT NULL,
+                      receiver_id BIGINT NOT NULL,
                       content VARCHAR(1000) NOT NULL,
                       creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                       update_date TIMESTAMP,

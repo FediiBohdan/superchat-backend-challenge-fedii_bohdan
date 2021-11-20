@@ -36,6 +36,11 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> getMessageHistory(long sender) {
+        return messageRepository.getMessageHistory(sender);
+    }
+
+    @Override
     public Message save(Message message) {
         return messageRepository.save(message);
     }

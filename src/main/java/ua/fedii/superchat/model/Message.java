@@ -1,7 +1,5 @@
 package ua.fedii.superchat.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -15,24 +13,24 @@ import java.time.LocalDateTime;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="sender_id")
+    @JoinColumn(name = "sender_id", nullable = false)
     private Contact sender;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="receiver_id")
+    @JoinColumn(name = "receiver_id", nullable = false)
     private Contact receiver;
 
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
     public Message() {}
