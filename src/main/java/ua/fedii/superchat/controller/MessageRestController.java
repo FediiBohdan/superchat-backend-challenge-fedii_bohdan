@@ -6,10 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.fedii.superchat.model.Contact;
 import ua.fedii.superchat.model.Message;
+import ua.fedii.superchat.placeholderHandlers.bitcoinHandler.BitcoinHandler;
 import ua.fedii.superchat.service.ContactService;
 import ua.fedii.superchat.service.MessageService;
 
-import java.util.List;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -36,8 +37,11 @@ public class MessageRestController {
     }
 
     @PostMapping("/messages")
-    public ResponseEntity<?> newMessage(@RequestBody Message newMessage) {
+    public ResponseEntity<?> newMessage(@RequestBody Message newMessage) throws IOException {
         newMessage.setId(0);
+
+        String checkedBitcoinPlaceHolder = new BitcoinHandler().checkBitcoinPlaceholder(newMessage.getContent());
+        newMessage.setContent(checkedBitcoinPlaceHolder);
 
         return getResponseEntity(newMessage);
     }
@@ -60,6 +64,6 @@ public class MessageRestController {
     @DeleteMapping("/messages/{messageId}")
     public ResponseEntity<?> deleteMessage(@PathVariable long messageId) {
         messageService.deleteById(messageId);
-        return ResponseEntity.status(200).body("Message deleted successfully!");
+        return ResponseEntity.status(200).body("Message with id " + messageId + " deleted successfully!");
     }
 }

@@ -38,6 +38,6 @@ public class ContactRestController {
     @DeleteMapping("/contacts/{contactId}")
     public ResponseEntity<?> deleteContact(@PathVariable long contactId) {
         contactService.deleteById(contactId);
-        return ResponseEntity.status(200).body("Contact deleted successfully!");
+        return ResponseEntity.status(200).body("Contact with id " + contactId + " deleted successfully!");
     }
 }
