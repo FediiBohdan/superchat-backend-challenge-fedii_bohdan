@@ -9,4 +9,5 @@ public interface ContactService {
     Contact findById(long id);
     Contact save(Contact contact);
     void deleteById(long id);
+    long checkContactPlaceholder(String messageContent);
 }

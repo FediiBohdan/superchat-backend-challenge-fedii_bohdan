@@ -8,6 +8,8 @@ import ua.fedii.superchat.service.ContactService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ContactServiceImpl implements ContactService {
@@ -50,5 +52,20 @@ public class ContactServiceImpl implements ContactService {
         else {
             throw new RuntimeException("Did not find contact by id: " + id);
         }
+    }
+
+    @Override
+    public long checkContactPlaceholder(String messageContent) {
+        final Pattern contactPattern = Pattern.compile("(?!(?i)@btc)(?!(?i)@bitcoin)([@][A-za-z0-9]+)");
+
+        Matcher matcher = contactPattern.matcher(messageContent);
+        String name = null;
+
+        if (matcher.find()) {
+            name = matcher.group(1);
+        }
+
+        assert name != null;
+        return contactRepository.findFirstByContactNameIgnoreCaseContaining(name.substring(1)).getId();
     }
 }

@@ -16,8 +16,8 @@ public class Contact {
     @Column(name = "id", nullable = false, unique = true)
     private long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "contact_name", nullable = false)
+    private String contactName;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -36,8 +36,8 @@ public class Contact {
 
     public Contact() {}
 
-    public Contact(String name, String email, String login, String password, LocalDateTime updateDate, boolean isDeleted) {
-        this.name = name;
+    public Contact(String contactName, String email, String login, String password, LocalDateTime updateDate, boolean isDeleted) {
+        this.contactName = contactName;
         this.email = email;
         this.login = login;
         this.password = password;
@@ -53,12 +53,12 @@ public class Contact {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContactName() {
+        return contactName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     public String getEmail() {
@@ -105,7 +105,7 @@ public class Contact {
     public String toString() {
         return "Contact{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", contactName='" + contactName + '\'' +
                 ", email='" + email + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +

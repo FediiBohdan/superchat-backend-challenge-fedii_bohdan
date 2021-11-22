@@ -1,7 +1,7 @@
-package ua.fedii.superchat.placeholderHandlers.bitcoinHandler;
+package ua.fedii.superchat.bitcoinPlaceholderHandler;
 
 import com.google.gson.Gson;
-import ua.fedii.superchat.placeholderHandlers.bitcoinHandler.model.Root;
+import ua.fedii.superchat.bitcoinPlaceholderHandler.model.Root;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

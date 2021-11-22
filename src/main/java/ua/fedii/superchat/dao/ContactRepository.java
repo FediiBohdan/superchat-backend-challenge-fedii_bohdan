@@ -6,4 +6,5 @@ import ua.fedii.superchat.model.Contact;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
+    Contact findFirstByContactNameIgnoreCaseContaining(String name);
 }

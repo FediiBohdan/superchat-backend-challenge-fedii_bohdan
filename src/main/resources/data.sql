@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS contact CASCADE;
 
 CREATE TABLE contact (id BIGSERIAL PRIMARY KEY,
-                      name VARCHAR(250) NOT NULL,
+                      contact_name VARCHAR(250) NOT NULL,
                       email VARCHAR(250) NOT NULL,
                       login VARCHAR(250) NOT NULL,
                       password VARCHAR(250) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE contact (id BIGSERIAL PRIMARY KEY,
                       update_date TIMESTAMP,
                       is_deleted BOOLEAN DEFAULT FALSE NOT NULL);
 
-INSERT INTO contact (name, email, login, password) VALUES
+INSERT INTO contact (contact_name, email, login, password) VALUES
 ('Derek Jackson', 'derek@mail.us', 'derek_super', 'derek_pass'),
 ('Mary Austin', 'mary@mail.uk', 'mary_super', 'mary_pass'),
 ('Alfredo Pacino', 'alfredo@mail.it', 'alfredo_super', 'alfredo_pass');
