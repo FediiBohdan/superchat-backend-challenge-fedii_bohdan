@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ua.fedii.superchat.model.Contact;
 import ua.fedii.superchat.model.Message;
-import ua.fedii.superchat.bitcoinPlaceholderHandler.BitcoinHandler;
+import ua.fedii.superchat.placeholderHandler.bitcoinPlaceholderHandler.BitcoinHandler;
+import ua.fedii.superchat.placeholderHandler.contactPlaceholderHandler.ContactHandler;
 import ua.fedii.superchat.service.ContactService;
 import ua.fedii.superchat.service.MessageService;
 
@@ -50,6 +51,8 @@ public class MessageRestController {
             long checkedContactId = contactService.checkContactPlaceholder(newMessage.getContent());
             contact.setId(checkedContactId);
             newMessage.setReceiver(contact);
+            String messageContentReplacement = new ContactHandler().replacePlaceholder(newMessage.getContent());
+            newMessage.setContent(messageContentReplacement);
         }
 
         return getResponseEntity(newMessage);

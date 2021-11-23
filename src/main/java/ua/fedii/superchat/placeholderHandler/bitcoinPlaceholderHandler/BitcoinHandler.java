@@ -1,4 +1,4 @@
-package ua.fedii.superchat.bitcoinPlaceholderHandler;
+package ua.fedii.superchat.placeholderHandler.bitcoinPlaceholderHandler;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -13,8 +13,7 @@ public class BitcoinHandler {
         if (matcher.find()) {
             return messageContent.replaceAll(bitcoinPattern.pattern(),
                     "BTC price is: " + new BitcoinParser().parseBitcoinPrice().getResult().getPrice() + "\\$");
-        }
-        else {
+        } else {
             return messageContent;
         }
     }

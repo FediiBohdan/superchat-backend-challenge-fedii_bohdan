@@ -1,0 +1,421 @@
+Before you start app testing you need to create a db "contacts_db" in PostgreSQL (locally, on 5432 port),
+if necessary - change the password and username in application.properties,
+then all needed tables will be created and filled with initial information by data.sql file.
+
+________________ Examples of the Contact API calls _________________
+Get a single contact - GET http://localhost:8080/api/contacts/3
+Response:
+{
+    "id": 3,
+    "contactName": "Alfredo Pacino",
+    "email": "alfredo@mail.it",
+    "login": "alfredo_super",
+    "password": "alfredo_pass",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+Get a contacts list - GET http://localhost:8080/api/contacts
+Response:
+[
+    {
+        "id": 1,
+        "contactName": "Derek Jackson",
+        "email": "derek@mail.us",
+        "login": "derek_super",
+        "password": "derek_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    {
+        "id": 2,
+        "contactName": "Mary Austin",
+        "email": "mary@mail.uk",
+        "login": "mary_super",
+        "password": "mary_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    {
+        "id": 3,
+        "contactName": "Alfredo Pacino",
+        "email": "alfredo@mail.it",
+        "login": "alfredo_super",
+        "password": "alfredo_pass",
+        "updateDate": null,
+        "isDeleted": false
+    }
+]
+*__________________________________________________________________*
+
+Create a new contact - POST http://localhost:8080/api/contacts
+{
+    "contactName": "Brian May",
+    "email": "brian@mail.uk",
+    "login": "brian_super",
+    "password": "brian_pass"
+}
+
+Response:
+{
+    "id": 4,
+    "contactName": "Brian May",
+    "email": "brian@mail.uk",
+    "login": "brian_super",
+    "password": "brian_pass",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+Edit a contact - PUT http://localhost:8080/api/contacts
+{
+    "id": 4,
+    "contactName": "Brian Day",
+    "email": "bri@mail.us",
+    "login": "bri_super",
+    "password": "bri_pass",
+    "updateDate": "{{currentDate}}"
+}
+
+Response:
+{
+    "id": 4,
+    "contactName": "Brian Day",
+    "email": "bri@mail.us",
+    "login": "bri_super",
+    "password": "bri_pass",
+    "updateDate": "2021-11-22T16:56:31.000937",
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+________________ Examples of the Message API calls _________________
+Get a single message - GET http://localhost:8080/api/messages/2
+Response:
+{
+    "id": 2,
+    "sender": {
+        "id": 2,
+        "contactName": "Mary Austin",
+        "email": "mary@mail.uk",
+        "login": "mary_super",
+        "password": "mary_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "receiver": {
+        "id": 1,
+        "contactName": "Derek Jackson",
+        "email": "derek@mail.us",
+        "login": "derek_super",
+        "password": "derek_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "content": "Hi, Derek! I am ok!",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+Get a messages list - GET http://localhost:8080/api/messages
+Response:
+[
+    {
+        "id": 1,
+        "sender": {
+            "id": 1,
+            "contactName": "Derek Jackson",
+            "email": "derek@mail.us",
+            "login": "derek_super",
+            "password": "derek_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "receiver": {
+            "id": 2,
+            "contactName": "Mary Austin",
+            "email": "mary@mail.uk",
+            "login": "mary_super",
+            "password": "mary_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "content": "Hello, Marry! How are you?",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    {
+        "id": 2,
+        "sender": {
+            "id": 2,
+            "contactName": "Mary Austin",
+            "email": "mary@mail.uk",
+            "login": "mary_super",
+            "password": "mary_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "receiver": {
+            "id": 1,
+            "contactName": "Derek Jackson",
+            "email": "derek@mail.us",
+            "login": "derek_super",
+            "password": "derek_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "content": "Hi, Derek! I am ok!",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    {
+        "id": 3,
+        "sender": {
+            "id": 2,
+            "contactName": "Mary Austin",
+            "email": "mary@mail.uk",
+            "login": "mary_super",
+            "password": "mary_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "receiver": {
+            "id": 3,
+            "contactName": "Alfredo Pacino",
+            "email": "alfredo@mail.it",
+            "login": "alfredo_super",
+            "password": "alfredo_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "content": "Good morning, Alfredo! When will you finish the task?",
+        "updateDate": null,
+        "isDeleted": false
+    }
+]
+*__________________________________________________________________*
+
+Get message history by the sender - GET http://localhost:8080/api/messages/history?sender=2
+Response:
+[
+    {
+        "id": 2,
+        "sender": {
+            "id": 2,
+            "contactName": "Mary Austin",
+            "email": "mary@mail.uk",
+            "login": "mary_super",
+            "password": "mary_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "receiver": {
+            "id": 1,
+            "contactName": "Derek Jackson",
+            "email": "derek@mail.us",
+            "login": "derek_super",
+            "password": "derek_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "content": "Hi, Derek! I am ok!",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    {
+        "id": 3,
+        "sender": {
+            "id": 2,
+            "contactName": "Mary Austin",
+            "email": "mary@mail.uk",
+            "login": "mary_super",
+            "password": "mary_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "receiver": {
+            "id": 3,
+            "contactName": "Alfredo Pacino",
+            "email": "alfredo@mail.it",
+            "login": "alfredo_super",
+            "password": "alfredo_pass",
+            "updateDate": null,
+            "isDeleted": false
+        },
+        "content": "Good morning, Alfredo! When will you finish the task?",
+        "updateDate": null,
+        "isDeleted": false
+    }
+]
+*__________________________________________________________________*
+
+Create a new message - POST http://localhost:8080/api/messages
+{
+    "sender":  {"id": 1},
+    "receiver": {"id": 4},
+    "content": "Hello Brian! Do you know Python?"
+}
+
+Response:
+{
+    "id": 5,
+    "sender": {
+        "id": 1,
+        "contactName": "Derek Jackson",
+        "email": "derek@mail.us",
+        "login": "derek_super",
+        "password": "derek_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "receiver": {
+        "id": 4,
+        "contactName": "Brian Day",
+        "email": "bri@mail.us",
+        "login": "bri_super",
+        "password": "bri_pass",
+        "updateDate": "2021-11-22T16:56:31.000937",
+        "isDeleted": false
+    },
+    "content": "Hello Brian! Do you know Python?",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+Edit a message - PUT http://localhost:8080/api/messages
+{
+    "id": 5,
+    "sender": {"id": 1},
+    "receiver": {"id": 4},
+    "content": "Hello Brian! Do you know C#?",
+    "updateDate": "{{currentDate}}"
+}
+
+Response:
+{
+    "id": 5,
+    "sender": {
+        "id": 1,
+        "contactName": "Derek Jackson",
+        "email": "derek@mail.us",
+        "login": "derek_super",
+        "password": "derek_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "receiver": {
+        "id": 4,
+        "contactName": "Brian Day",
+        "email": "bri@mail.us",
+        "login": "bri_super",
+        "password": "bri_pass",
+        "updateDate": "2021-11-22T16:56:31.000937",
+        "isDeleted": false
+    },
+    "content": "Hello Brian! Do you know C#?",
+    "updateDate": "2021-11-22T17:15:16.000531",
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+** !NOTE! **
+While updating entities, key "updateDate" needs value, which is processed in
+Pre-request Script (in case if you are using Postman). The script is below.
+
+const pad = n => n.toString().padStart(2, 0);
+        const toGOSTString = function (date) {
+            let offset = date.getTimezoneOffset();
+            let sign = offset <= 0 ? "+" : "-";
+            return date.getFullYear() +
+                "-" + pad(date.getMonth() + 1) +
+                "-" + pad(date.getDate()) +
+                "T" + pad(date.getHours()) +
+                ":" + pad(date.getMinutes()) +
+                ":" + pad(date.getSeconds()) +
+                "." + date.getMilliseconds().toString().padStart(6, 0);
+        };
+
+        const c_date = new Date();
+pm.environment.set('currentDate', toGOSTString(c_date));
+
+
+________________ Examples of the Message placeholders API calls _________________
+Placeholder is detected by regex; placeholder starts with '@' symbol
+
+* Bitcoin placeholder can be detected when it looks like @btc or @bitcoin (case insensitive) *
+* If the regex finds a bitcoin placeholder, it replaces it with 'BTC price is: {current_price}$' *
+Create a message with bitcoin placeholder - POST http://localhost:8080/api/messages
+{
+    "sender":  {"id": 2},
+    "receiver": {"id": 3},
+    "content": "Hi Alfredo! @btc"
+}
+
+Response:
+{
+    "id": 6,
+    "sender": {
+        "id": 2,
+        "contactName": "Mary Austin",
+        "email": "mary@mail.uk",
+        "login": "mary_super",
+        "password": "mary_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "receiver": {
+        "id": 3,
+        "contactName": "Alfredo Pacino",
+        "email": "alfredo@mail.it",
+        "login": "alfredo_super",
+        "password": "alfredo_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "content": "Hi Alfredo! BTC price is: 58205.0$",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*
+
+* Contact placeholder can be detected when it looks like @Mary (case insensitive) *
+* If the regex finds a contact placeholder, the app looks for a coincidence in contact table *
+* If there is a contact with such name, the app gets his/her id *
+* So, this way there is no need to specify receiver's id, it will be substituted *
+* And the placeholder will be removed from the message *
+Create a message with contact placeholder - POST http://localhost:8080/api/messages
+{
+    "sender":  {"id": 4},
+    "content": "@mary Good Morning! How is it going?"
+}
+
+Response:
+{
+    "id": 9,
+    "sender": {
+        "id": 4,
+        "contactName": "Brian Day",
+        "email": "bri@mail.us",
+        "login": "bri_super",
+        "password": "bri_pass",
+        "updateDate": "2021-11-22T16:56:31.000937",
+        "isDeleted": false
+    },
+    "receiver": {
+        "id": 2,
+        "contactName": "Mary Austin",
+        "email": "mary@mail.uk",
+        "login": "mary_super",
+        "password": "mary_pass",
+        "updateDate": null,
+        "isDeleted": false
+    },
+    "content": " Good Morning! How is it going?",
+    "updateDate": null,
+    "isDeleted": false
+}
+*__________________________________________________________________*

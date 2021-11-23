@@ -34,7 +34,8 @@ public class Contact {
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
-    public Contact() {}
+    public Contact() {
+    }
 
     public Contact(String contactName, String email, String login, String password, LocalDateTime updateDate, boolean isDeleted) {
         this.contactName = contactName;

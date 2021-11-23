@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="message")
+@Table(name = "message")
 @SQLDelete(sql = "UPDATE message SET is_deleted = true WHERE id = ?")
 @Where(clause = "is_deleted = false")
 public class Message {
@@ -33,7 +33,8 @@ public class Message {
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
-    public Message() {}
+    public Message() {
+    }
 
     public Message(Contact sender, Contact receiver, String content, LocalDateTime updateDate, boolean isDeleted) {
         this.sender = sender;

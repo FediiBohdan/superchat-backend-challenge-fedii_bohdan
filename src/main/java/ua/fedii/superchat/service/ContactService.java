@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface ContactService {
     List<Contact> findAll();
+
     Contact findById(long id);
+
     Contact save(Contact contact);
+
     void deleteById(long id);
+
     long checkContactPlaceholder(String messageContent);
 }

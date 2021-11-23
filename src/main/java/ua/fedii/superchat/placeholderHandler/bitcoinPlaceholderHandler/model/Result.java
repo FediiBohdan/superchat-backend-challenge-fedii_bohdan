@@ -1,4 +1,4 @@
-package ua.fedii.superchat.bitcoinPlaceholderHandler.model;
+package ua.fedii.superchat.placeholderHandler.bitcoinPlaceholderHandler.model;
 
 public class Result {
     private float price;

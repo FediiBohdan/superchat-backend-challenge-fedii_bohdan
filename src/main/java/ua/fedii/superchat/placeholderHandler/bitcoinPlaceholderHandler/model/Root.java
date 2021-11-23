@@ -1,4 +1,4 @@
-package ua.fedii.superchat.bitcoinPlaceholderHandler.model;
+package ua.fedii.superchat.placeholderHandler.bitcoinPlaceholderHandler.model;
 
 public class Root {
     private Result result;

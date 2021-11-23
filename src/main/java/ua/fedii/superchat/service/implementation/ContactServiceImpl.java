@@ -29,8 +29,7 @@ public class ContactServiceImpl implements ContactService {
 
         if (tempContact.isPresent()) {
             contact = tempContact.get();
-        }
-        else {
+        } else {
             throw new RuntimeException("Did not find contact by id: " + id);
         }
 
@@ -48,8 +47,7 @@ public class ContactServiceImpl implements ContactService {
 
         if (tempContact.isPresent()) {
             contactRepository.deleteById(id);
-        }
-        else {
+        } else {
             throw new RuntimeException("Did not find contact by id: " + id);
         }
     }

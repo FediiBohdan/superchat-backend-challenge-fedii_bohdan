@@ -27,8 +27,7 @@ public class MessageServiceImpl implements MessageService {
 
         if (tempMessage.isPresent()) {
             message = tempMessage.get();
-        }
-        else {
+        } else {
             throw new RuntimeException("Did not find message by id: " + id);
         }
 
@@ -51,8 +50,7 @@ public class MessageServiceImpl implements MessageService {
 
         if (tempMessage.isPresent()) {
             messageRepository.deleteById(id);
-        }
-        else {
+        } else {
             throw new RuntimeException("Did not find message by id: " + id);
         }
     }
